@@ -47,7 +47,6 @@ module HealthCheck
             errors << HealthCheck::Utils.check_cache
           when "standard"
             errors << HealthCheck::Utils.process_checks(HealthCheck.standard_checks.join('_'))
-            errors << HealthCheck::Utils.process_checks("email") if HealthCheck::Utils.mailer_configured?
           when "custom"
             HealthCheck.custom_checks.each do |custom_check|
               errors << custom_check.call(self)
